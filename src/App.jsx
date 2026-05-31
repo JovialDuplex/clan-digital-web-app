@@ -1,121 +1,96 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import {Button} from "@/components/ui/button";
+import {Checkbox} from "@/components/ui/checkbox";
+import {
+  Field, 
+  FieldContent,
+  FieldDescription,
+  FieldGroup,
+  FieldSeparator,
+  FieldLegend,
+  FieldLabel,
+  FieldSet,
+  FieldTitle,
+  FieldError
+} from "@/components/ui/field";
 
-function App() {
-  const [count, setCount] = useState(0)
+import {Toggle} from "@/components/ui/toggle"
+import {Input} from "@/components/ui/input";
+import {Textarea} from "@/components/ui/textarea"
+import { Switch } from '@/components/ui/switch';
+import {Handshake, XSquare} from "lucide-react";
+
+import {useForm} from "react-hook-form";
+
+const FormDemo = function(){
+  const {
+    register,
+    handleSubmit,
+    formState : { errors }
+  } = useForm();
+  
+  const onSubmit = function(data) {
+    console.log(data);
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="w-full max-w-md">
+      <form encType={"multipart/form-data"} onSubmit={handleSubmit(onSubmit)}>
+        <FieldGroup>
+          <Field>
+            <FieldLabel htmlFor={"service-name"} >
+              Nom du service 
+            </FieldLabel>
+            <Input 
+              type={"text"} 
+              id={"service-name"}
+              name={"service_name"} 
+              placeholder={"Entrer votre nom"} 
+              {...register("service_name", {
+                required: "Le nom est requis ..."
+              })}
 
-      <div className="ticks"></div>
+              />
+            {errors.service_name && (<p className={"text-red-500"}>{errors.service_name.message}</p>)}
+          </Field>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          <Field>
+            <FieldLabel htmlFor={"service-description"}> Description du service </FieldLabel>
+            <Textarea 
+              name={"service_description"} 
+              id={"service-description"}
+              {...register("service_description")}
+            />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+          </Field>
+
+          <Field>
+            <FieldLabel htmlFor={"service-image"}> Image de couverture </FieldLabel>
+            <Input 
+              type={"file"} 
+              accepts={"image/*"} 
+              name={"service_image"} 
+              id={"service-image"} 
+              {...register("service_image")}
+            />
+            <FieldDescription>NB: Veuillez entrer une image de moins de 5Mo</FieldDescription>
+          </Field>
+
+          <Field orientation='horizontal'>
+            <Button className={"bg-green-600 hover:bg-green-700 hover:cursor-pointer"} type={"submit"}> <Handshake/> Envoyer</Button>
+            <Button variant={"destructive"} type={"reset"}> <XSquare/> Annuler </Button>
+          </Field>
+        </FieldGroup>
+
+      </form>
+    </div>
+  )
+};
+
+function App() {
+  
+  return (
+    <FormDemo />
   )
 }
 
