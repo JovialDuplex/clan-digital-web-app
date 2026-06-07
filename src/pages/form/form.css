@@ -29,7 +29,7 @@
 .main-container {
     background: var(--bg-main-container);
     width: 70%;
-    height: 80%;
+    height: 90%;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 1fr;
@@ -37,14 +37,14 @@
     border-radius: 20px;
 }
 
-/* design side container  */
+/* design side container ---------------------------- */
 .side-container {
     background: var(--color-green-50);
     margin: 10px;
     border-radius: 15px;
 }
 
-
+/* design form container ----------------------------- */
 /* design form register-form  */
 .form-container .register-form {
     display: flex;

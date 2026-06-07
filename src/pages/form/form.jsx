@@ -37,11 +37,10 @@ const FormPage = function(){
     };
 
     return (
-        <div className="form-page" data-theme={"dark"}>
+        <div className="form-page">
             <div className="main-container" onChange={(event)=> event.target.value}>
                 
-                <div className="side-container"></div>
-                
+                {/* -------------- form-container --------------------- */}
                 <div className="form-container">
                     
                     <div className="register-form">
@@ -88,8 +87,11 @@ const FormPage = function(){
                             <Button variant="outline"> <FaGithub /> Github </Button>
                         </Field>
                     </div>
+                </div>
 
-
+                {/*------------------ side-container ------------------ */}
+                <div className="side-container">
+                    
                 </div>
             </div>
         </div>

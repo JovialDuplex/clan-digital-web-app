@@ -1,0 +1,35 @@
+/* main design properties */
+:root {
+    --bg-page : #f4f6f8;
+    --bg-main-container: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #6b7280;
+    --border-input: #e2e8f0;
+    --bg-input: #ffffff;
+    --shadow-color: #00000093;
+    --main-color: #1ecfb3;
+    --secondary-color: #0d1b2a;
+}
+
+[data-theme = "dark"]{
+    --bg-page: #0f1923;
+    --bg-main-container: #1a2535;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --border-input: #2d3748;
+    --bg-input: #243044;
+}
+
+/* design nav-container */
+.nav-container {
+    background: var(--bg-page);
+}
+
+.nav-item a {
+    text-transform: capitalize;
+}
+.nav-item a.active {
+    color: red;
+}
+.nav-logo img{
+}
